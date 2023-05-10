@@ -1,0 +1,33 @@
+use("prueba_store");
+
+db.users.drop();
+
+db.createCollection(
+    "users",
+    {
+        validator:
+        {
+            $jsonSchema:
+            {
+                bsonType:
+                    "object",
+                required: ["mail", "password"],
+                properties:
+                {
+                    name:
+                    {
+                        bsonType: "string"
+                    },
+                    mail:
+                    {
+                        bsonType: "string"
+                    },
+                    password:
+                    {
+                        bsonType: "string"
+                    }
+                }
+            }
+        }
+    }
+);

@@ -1,0 +1,11 @@
+use("prueba_store");
+
+db.users.insertOne(
+    {
+        name: "molina",
+        mail: "ejemplo@mail.com",
+        password: "1234"
+    }
+);
+
+db.users.find();
