@@ -4,7 +4,10 @@ db.users.insertOne(
     {
         name: "molina",
         mail: "ejemplo@mail.com",
-        password: "1234"
+        password: "1234",
+        age: 2,
+        isSingle: true,
+        role: "vendedor"
     }
 );
 

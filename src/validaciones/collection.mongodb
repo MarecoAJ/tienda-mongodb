@@ -25,6 +25,20 @@ db.createCollection(
                     password:
                     {
                         bsonType: "string"
+                    },
+                    age:
+                    {
+                        bsonType: "number",
+                        minimum: 1,
+                        maximum:99 
+                    },
+                    isSingle:
+                    {
+                        bsonType: 'bool'
+                    },
+                    role:
+                    {
+                        enum: ["comprador", "vendedor", "gerente"]
                     }
                 }
             }
