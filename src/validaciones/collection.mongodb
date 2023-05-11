@@ -1,9 +1,55 @@
 use("prueba_store");
 
-db.users.drop();
+//db.users.drop();
+
+db.products.drop();
+
+// db.createCollection(
+//     "users",
+//     {
+//         validator:
+//         {
+//             $jsonSchema:
+//             {
+//                 bsonType:
+//                     "object",
+//                 required: ["mail", "password"],
+//                 properties:
+//                 {
+//                     name:
+//                     {
+//                         bsonType: "string"
+//                     },
+//                     mail:
+//                     {
+//                         bsonType: "string"
+//                     },
+//                     password:
+//                     {
+//                         bsonType: "string"
+//                     },
+//                     age:
+//                     {
+//                         bsonType: "number",
+//                         minimum: 1,
+//                         maximum:99 
+//                     },
+//                     isSingle:
+//                     {
+//                         bsonType: 'bool'
+//                     },
+//                     role:
+//                     {
+//                         enum: ["comprador", "vendedor", "gerente"]
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// );
 
 db.createCollection(
-    "users",
+    "products",
     {
         validator:
         {
@@ -11,34 +57,38 @@ db.createCollection(
             {
                 bsonType:
                     "object",
-                required: ["mail", "password"],
+                required: ["name"],
                 properties:
                 {
                     name:
                     {
                         bsonType: "string"
                     },
-                    mail:
+                    sizes:
                     {
-                        bsonType: "string"
+                        bsonType: "array",
+                        minItems: 1,
+                        uniqueItems: true,
+                        items:
+                        {
+                            bsonType: "string"
+                        }
                     },
-                    password:
+                    category:
                     {
-                        bsonType: "string"
-                    },
-                    age:
-                    {
-                        bsonType: "number",
-                        minimum: 1,
-                        maximum:99 
-                    },
-                    isSingle:
-                    {
-                        bsonType: 'bool'
-                    },
-                    role:
-                    {
-                        enum: ["comprador", "vendedor", "gerente"]
+                       bsonType: "object",
+                       required: ["name"],
+                       properties:
+                       {
+                            name:
+                            {
+                                bsonType: "string"
+                            },
+                            image:
+                            {
+                                bsonType: "string"
+                            }
+                       } 
                     }
                 }
             }

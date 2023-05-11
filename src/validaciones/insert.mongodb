@@ -1,14 +1,28 @@
 use("prueba_store");
 
-db.users.insertOne(
+// db.users.insertOne(
+//     {
+//         name: "molina",
+//         mail: "ejemplo@mail.com",
+//         password: "1234",
+//         age: 2,
+//         isSingle: true,
+//         role: "vendedor"
+//     }
+// );
+
+// db.users.find();
+
+db.products.insertOne(
     {
-        name: "molina",
-        mail: "ejemplo@mail.com",
-        password: "1234",
-        age: 2,
-        isSingle: true,
-        role: "vendedor"
+        name: "remeras",
+        sizes: ["L", "M", "S"],
+        category:
+        {
+            name: "ropa",
+            image: ""
+        } 
     }
 );
 
-db.users.find();
+db.products.find();
