@@ -1,8 +1,8 @@
 use("prueba_store");
 
-//db.users.drop();
+db.users.drop();
 
-db.products.drop();
+//db.products.drop();
 
 // db.createCollection(
 //     "users",
@@ -48,8 +48,56 @@ db.products.drop();
 //     }
 // );
 
+// db.createCollection(
+//     "products",
+//     {
+//         validator:
+//         {
+//             $jsonSchema:
+//             {
+//                 bsonType:
+//                     "object",
+//                 required: ["name"],
+//                 properties:
+//                 {
+//                     name:
+//                     {
+//                         bsonType: "string"
+//                     },
+//                     sizes:
+//                     {
+//                         bsonType: "array",
+//                         minItems: 1,
+//                         uniqueItems: true,
+//                         items:
+//                         {
+//                             bsonType: "string"
+//                         }
+//                     },
+//                     category:
+//                     {
+//                        bsonType: "object",
+//                        required: ["name"],
+//                        properties:
+//                        {
+//                             name:
+//                             {
+//                                 bsonType: "string"
+//                             },
+//                             image:
+//                             {
+//                                 bsonType: "string"
+//                             }
+//                        } 
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// );
+
 db.createCollection(
-    "products",
+    "users",
     {
         validator:
         {
@@ -57,38 +105,35 @@ db.createCollection(
             {
                 bsonType:
                     "object",
-                required: ["name"],
+                required: ["mail", "password"],
                 properties:
                 {
                     name:
                     {
                         bsonType: "string"
                     },
-                    sizes:
+                    mail:
                     {
-                        bsonType: "array",
-                        minItems: 1,
-                        uniqueItems: true,
-                        items:
-                        {
-                            bsonType: "string"
-                        }
+                        bsonType: "string"
                     },
-                    category:
+                    password:
                     {
-                       bsonType: "object",
-                       required: ["name"],
-                       properties:
-                       {
-                            name:
-                            {
-                                bsonType: "string"
-                            },
-                            image:
-                            {
-                                bsonType: "string"
-                            }
-                       } 
+                        bsonType: "string",
+                        pattern: "^[A-Za-z0-9]{8,}$"
+                    },
+                    age:
+                    {
+                        bsonType: "number",
+                        minimum: 1,
+                        maximum:99 
+                    },
+                    isSingle:
+                    {
+                        bsonType: 'bool'
+                    },
+                    role:
+                    {
+                        enum: ["comprador", "vendedor", "gerente"]
                     }
                 }
             }

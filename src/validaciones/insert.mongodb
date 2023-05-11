@@ -13,16 +13,30 @@ use("prueba_store");
 
 // db.users.find();
 
-db.products.insertOne(
+// db.products.insertOne(
+//     {
+//         name: "remeras",
+//         sizes: ["L", "M", "S"],
+//         category:
+//         {
+//             name: "ropa",
+//             image: ""
+//         } 
+//     }
+// );
+
+
+db.users.insertOne(
     {
-        name: "remeras",
-        sizes: ["L", "M", "S"],
-        category:
-        {
-            name: "ropa",
-            image: ""
-        } 
+        name: "molina",
+        mail: "ejemplo@mail.com",
+        password: "1234",
+        age: 2,
+        isSingle: true,
+        role: "vendedor"
     }
 );
 
-db.products.find();
+//db.products.find();
+
+db.users.find();
