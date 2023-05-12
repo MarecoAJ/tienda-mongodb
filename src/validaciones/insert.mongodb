@@ -26,17 +26,63 @@ use("prueba_store");
 // );
 
 
-db.users.insertOne(
+// db.users.insertOne(
+//     {
+//         name: "molina",
+//         mail: "ejemplo@mail.com",
+//         password: "1234",
+//         age: 2,
+//         isSingle: true,
+//         role: "vendedor"
+//     }
+// );
+
+// db.products.find();
+
+// db.users.find();
+
+db.stores.insertOne(
     {
-        name: "molina",
-        mail: "ejemplo@mail.com",
-        password: "1234",
-        age: 2,
-        isSingle: true,
-        role: "vendedor"
+        storeId: "st001",
+        name: "tienda",
+        address: "calle"
     }
 );
 
-//db.products.find();
+db.stores_details.insertOne(
+    {
+        storeId: "st001",
+        description: "texto",
+        manager:
+        {
+            email: "ejemplo@mail.com",
+            cellphone: "33554466"
+        }
+    }
+);
 
-db.users.find();
+db.stores.find(
+    {
+        storeId: "st001"
+    }
+);
+
+db.stores_details.find(
+    {
+        storeId: "st001"
+    }
+);
+
+// consulta unificada join
+
+db.stores.aggregate(
+    {
+        $lookup:
+        {
+            from: "stores_details",
+            localField: "storeId",
+            foreignField: "storeId",
+            as: "detail"
+        }
+    }
+);
