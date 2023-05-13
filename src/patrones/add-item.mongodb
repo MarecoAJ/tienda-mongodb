@@ -1,0 +1,23 @@
+use("prueba_store");
+
+db.orders.updateOne(
+    {
+        _id: ObjectId("645ff8e1cc934319048a6478")
+    },
+    {
+        $push: 
+        {
+            items:
+            {
+                name: "pantalon",
+                price: 120,
+                qty:1,
+                product_id: ObjectId("645f9bedfb65445283e7d169")
+            }
+        },
+        $inc:
+        {
+            total:120*1
+        }
+    }
+);

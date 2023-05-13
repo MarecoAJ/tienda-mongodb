@@ -1,0 +1,11 @@
+use("prueba_store");
+db.orders.insertOne(
+    {
+        userId: ObjectId("645e4a072873197c9985299c"),
+        date: "01-01-2000",
+        total: 0,
+        items:
+        [
+        ]
+    }
+);
