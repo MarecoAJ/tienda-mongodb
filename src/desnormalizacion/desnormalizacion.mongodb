@@ -1,0 +1,22 @@
+use("prueba_store");
+db.orders.insertOne(
+    {
+        userId: ObjectId("645e4a072873197c9985299c"),
+        date: "01-01-2000",
+        items:
+        [
+            {
+                name: "camiseta",
+                price: 120,
+                qty:1,
+                product_id: ObjectId("645cf5321f909f4a45aad6e8")
+            },
+            {
+                name: "pantalon",
+                price: 120,
+                qty:1,
+                product_id: ObjectId("645f9bedfb65445283e7d169")
+            }
+        ]
+    }
+);
