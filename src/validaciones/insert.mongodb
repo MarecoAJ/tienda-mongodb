@@ -41,48 +41,89 @@ use("prueba_store");
 
 // db.users.find();
 
-db.stores.insertOne(
-    {
-        storeId: "st001",
-        name: "tienda",
-        address: "calle"
-    }
-);
+// db.stores.insertOne(
+//     {
+//         storeId: "st001",
+//         name: "tienda",
+//         address: "calle"
+//     }
+// );
 
-db.stores_details.insertOne(
-    {
-        storeId: "st001",
-        description: "texto",
-        manager:
-        {
-            email: "ejemplo@mail.com",
-            cellphone: "33554466"
-        }
-    }
-);
+// db.stores_details.insertOne(
+//     {
+//         storeId: "st001",
+//         description: "texto",
+//         manager:
+//         {
+//             email: "ejemplo@mail.com",
+//             cellphone: "33554466"
+//         }
+//     }
+// );
 
-db.stores.find(
-    {
-        storeId: "st001"
-    }
-);
+// db.stores.find(
+//     {
+//         storeId: "st001"
+//     }
+// );
 
-db.stores_details.find(
-    {
-        storeId: "st001"
-    }
-);
+// db.stores_details.find(
+//     {
+//         storeId: "st001"
+//     }
+// );
 
-// consulta unificada join
+// // consulta unificada join
 
-db.stores.aggregate(
-    {
-        $lookup:
-        {
-            from: "stores_details",
-            localField: "storeId",
-            foreignField: "storeId",
-            as: "detail"
-        }
+// db.stores.aggregate(
+//     {
+//         $lookup:
+//         {
+//             from: "stores_details",
+//             localField: "storeId",
+//             foreignField: "storeId",
+//             as: "detail"
+//         }
+//     }
+// );
+
+// db.orders.insertOne(
+//     {
+//         userId: ObjectId("645e4a072873197c9985299c"),
+//         date: "01-01-2000",
+//         items:
+//         [
+//             {
+//                 name: "camiseta",
+//                 price: 120,
+//                 qty:1
+//             },
+//             {
+//                 name: "pantalon",
+//                 price: 120,
+//                 qty:1
+//             }
+//         ]
+//     }
+// );
+
+db.orders.aggregate(
+[
+{
+    //buscar por una sola orden
+    $match: {
+      _id: ObjectId('645f901928ca86874c6e85eb')
     }
+},
+{
+    //crear relacion y traer data de user
+    $lookup: 
+    {
+        from: "users",
+        localField: "user_id",
+        foreignField: "_id",
+        as: "user"
+    }
+}
+]
 );
