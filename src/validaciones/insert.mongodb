@@ -177,16 +177,31 @@ use("prueba_store");
 //     ]
 // );
 
-db.stores.aggregate(
-    [
+// db.stores.aggregate(
+//     [
+//         {
+//             $lookup:
+//             {
+//                 from: "products",
+//                 localField: "products_ids",
+//                 foreignField: "_id",
+//                 as: "products"
+//             }
+//         }
+//     ]
+// );
+
+db.products.updateOne(
+    {
+        _id: ObjectId("645cf5321f909f4a45aad6e8")
+    },
+    {
+        $set:
         {
-            $lookup:
-            {
-                from: "products",
-                localField: "products_ids",
-                foreignField: "_id",
-                as: "products"
-            }
+            stores_ids:
+                [
+                    ObjectId("645f9f2273d9bf4a6e8fd71c")
+                ]
         }
-    ]
+    }
 );
