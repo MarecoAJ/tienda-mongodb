@@ -107,23 +107,86 @@ use("prueba_store");
 //     }
 // );
 
-db.orders.aggregate(
-[
-{
-    //buscar por una sola orden
-    $match: {
-      _id: ObjectId('645f901928ca86874c6e85eb')
-    }
-},
-{
-    //crear relacion y traer data de user
-    $lookup: 
-    {
-        from: "users",
-        localField: "user_id",
-        foreignField: "_id",
-        as: "user"
-    }
-}
-]
+// db.orders.aggregate(
+// [
+// {
+//     //buscar por una sola orden
+//     $match: {
+//       _id: ObjectId('645f901928ca86874c6e85eb')
+//     }
+// },
+// {
+//     //crear relacion y traer data de user
+//     $lookup: 
+//     {
+//         from: "users",
+//         localField: "user_id",
+//         foreignField: "_id",
+//         as: "user"
+//     }
+// }
+// ]
+// );
+
+// db.products.insertMany(
+//     [
+//         {
+//             name: "pantalon",
+//             size: ["L", "M"],
+//             price: 120
+//         },
+//         {
+//             name: "remera",
+//             size: ["L", "M"],
+//             price: 80
+//         },
+//         {
+//             name: "zapa",
+//             size: ["38", "40"],
+//             price: 150
+//         },
+//         {
+//             name: "pantalon corto",
+//             size: ["L", "M"],
+//             price: 100
+//         }
+//     ]
+// );
+
+//db.products.find();
+
+// db.stores.insertMany(
+//     [
+//         {
+//             name: "tienda 1",
+//             products_ids:
+//             [
+//                 ObjectId("645cf5321f909f4a45aad6e8"),
+//                 ObjectId("645f9bedfb65445283e7d169"),
+//                 ObjectId("645f9bedfb65445283e7d16a")
+//             ]
+//         },
+//         {
+//             name: "tienda 2",
+//             products_ids:
+//             [
+//                 ObjectId("645cf5321f909f4a45aad6e8"),
+//                 ObjectId("645f9bedfb65445283e7d169")
+//             ]
+//         }
+//     ]
+// );
+
+db.stores.aggregate(
+    [
+        {
+            $lookup:
+            {
+                from: "products",
+                localField: "products_ids",
+                foreignField: "_id",
+                as: "products"
+            }
+        }
+    ]
 );
